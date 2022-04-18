@@ -16,7 +16,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-contract distributeTwitterShares is ERC721, Ownable, ReentrancyGuard{
+contract DistributeShares is ERC721, Ownable, ReentrancyGuard{
 
     using Counters for Counters.Counter;
     using SafeMath for uint256;
@@ -54,5 +54,9 @@ contract distributeTwitterShares is ERC721, Ownable, ReentrancyGuard{
             allSharesDistributed = !allSharesDistributed;
             emit DistributionComplete();
         }
+    }
+
+    fucntion getAmountOfTwitterShares(address _address) public view returns(uint256){
+        return balanceOf(_address);
     }
 }
