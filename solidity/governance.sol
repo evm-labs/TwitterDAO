@@ -27,7 +27,7 @@ import "./equityDistribution.sol"
 
 contract TwitterGovernance is ERC721, Ownable, ReentrancyGuard, Utils, DistributeShares{
 
-    uint internal CONSTANT secondsInAWeek = 604800;
+    uint internal CONSTANT secondsInAWeek = 1 weeks;
     address public boardMemberAddresses = [address(0), address(0), address[0], address(0), address[0]];
     address public boardChairman = address[0];
     uint boardMemberVoteFactor = TWITTER_SHARES.div(100) // Arbitrary number, can be based on proper formula
