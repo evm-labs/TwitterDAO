@@ -24,6 +24,7 @@ contract DistributeShares is ERC721, Ownable, ReentrancyGuard{
     uint256 public constant TWITTER_SHARES = 1000000;
     bool public allSharesDistributed = false;
     Counters.Counter public tokenSupply;
+    address payable capitalAllocationAddress;  // temp zero address
 
     mapping (address => uint256) public shareholderSharesPreMint;
 
@@ -56,7 +57,12 @@ contract DistributeShares is ERC721, Ownable, ReentrancyGuard{
         }
     }
 
-    fucntion getAmountOfTwitterShares(address _address) public view returns(uint256){
+    function getAmountOfTwitterShares(address _address) public view returns(uint256){
         return balanceOf(_address);
+    }
+
+    function transferToCapitalAllocation() external payable nonReentrant {
+        (bool success, _) = payable(capitalAllocationAddress).call{value: address(this).balance}("")
+        require(success, "The transfer failed.")
     }
 }
